@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "Upload file",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "file": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+        "file_name": "test.png",
+        "content_type": "image/png"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "url": "string",
+        "key": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

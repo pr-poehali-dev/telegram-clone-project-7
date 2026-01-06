@@ -1,7 +1,16 @@
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
-import { Chat } from '@/pages/Index';
 import { Badge } from '@/components/ui/badge';
+
+interface Chat {
+  id: string;
+  name: string;
+  avatar: string;
+  lastMessage: string;
+  timestamp: string;
+  unread: number;
+  online: boolean;
+}
 
 interface ChatListProps {
   chats: Chat[];

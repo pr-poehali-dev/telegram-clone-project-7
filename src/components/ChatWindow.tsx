@@ -2,19 +2,40 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
-import { Chat } from '@/pages/Index';
+
+interface Message {
+  id: string;
+  text: string;
+  sender: 'me' | 'other';
+  timestamp: string;
+  type: 'text' | 'image' | 'voice';
+  imageUrl?: string;
+  duration?: string;
+}
+
+interface Chat {
+  id: string;
+  name: string;
+  avatar: string;
+  online: boolean;
+  messages: Message[];
+}
 
 interface ChatWindowProps {
   chat: Chat;
   onClose: () => void;
   onVideoCall: () => void;
+  onSendMessage?: (chatId: string, text: string) => void;
 }
 
-export default function ChatWindow({ chat, onClose, onVideoCall }: ChatWindowProps) {
+export default function ChatWindow({ chat, onClose, onVideoCall, onSendMessage }: ChatWindowProps) {
   const [message, setMessage] = useState('');
 
   const handleSend = () => {
     if (message.trim()) {
+      if (onSendMessage) {
+        onSendMessage(chat.id, message);
+      }
       setMessage('');
     }
   };
